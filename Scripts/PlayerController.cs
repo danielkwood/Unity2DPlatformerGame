@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         playerAnimation = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    // Update is called once per frame 
     void Update()
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
