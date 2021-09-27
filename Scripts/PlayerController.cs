@@ -75,13 +75,18 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             // Or you can use SceneManager.LoadScene(1); to load a specific scene instead
-
             respawnPoint = transform.position;
         }
         else if (collision.tag == "PreviousLevel")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             respawnPoint = transform.position;
+        }
+        else if(collision.tag == "Crystal")
+        {
+            Scoring.totalScore += 1;
+            Debug.Log(Scoring.totalScore);
+            collision.gameObject.SetActive(false);
         }
     }
 }
