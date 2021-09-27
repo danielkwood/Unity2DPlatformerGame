@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         playerAnimation = GetComponent<Animator>();
     }
 
-    // Update is called once per frame 
+    // Update is called once per frame
     void Update()
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -32,10 +32,12 @@ public class PlayerController : MonoBehaviour
         if (direction > 0f)
         {
             player.velocity = new Vector2(direction * speed, player.velocity.y);
+            transform.localScale = new Vector2(0.2469058f, 0.2469058f);
         }
         else if (direction < 0f)
         {
             player.velocity = new Vector2(direction * speed, player.velocity.y);
+            transform.localScale = new Vector2(-0.2469058f, 0.2469058f);
         }
         else
         {
