@@ -66,5 +66,9 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = respawnPoint;
         }
+        else if(collision.tag == "Checkpoint")
+        {
+            respawnPoint = transform.position;
+        }
     }
 }
