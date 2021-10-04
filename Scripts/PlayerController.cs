@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 respawnPoint;
     public GameObject fallDetector;
+    public Text scoreText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         playerAnimation = GetComponent<Animator>();
         respawnPoint = transform.position;
+        scoreText.text = "Score: " + Scoring.totalScore;
     }
 
     // Update is called once per frame
@@ -74,7 +77,7 @@ public class PlayerController : MonoBehaviour
         else if(collision.tag == "NextLevel")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            // Or you can use SceneManager.LoadScene(1); to load a specific scene instead
+            // Can also use SceneManager.LoadScene(1); to load a specific scene
             respawnPoint = transform.position;
         }
         else if (collision.tag == "PreviousLevel")
@@ -85,7 +88,7 @@ public class PlayerController : MonoBehaviour
         else if(collision.tag == "Crystal")
         {
             Scoring.totalScore += 1;
-            Debug.Log(Scoring.totalScore);
+            scoreText.text = "Score: " + Scoring.totalScore;
             collision.gameObject.SetActive(false);
         }
     }
