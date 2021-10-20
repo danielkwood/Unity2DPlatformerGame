@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 respawnPoint;
     public GameObject fallDetector;
+
     public Text scoreText;
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +67,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if(collision.tag == "FallDetector")
         {
             transform.position = respawnPoint;
@@ -90,6 +91,14 @@ public class PlayerController : MonoBehaviour
             Scoring.totalScore += 1;
             scoreText.text = "Score: " + Scoring.totalScore;
             collision.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "Spike")
+        {
+            healthBar.Damage(0.002f);
         }
     }
 }
